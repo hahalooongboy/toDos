@@ -1,0 +1,24 @@
+<form>
+  <input type="text"
+         id="name"
+         name="name"
+         [(ngModel)]="todo.name"
+         [value]="todo.name">
+  <textarea id="description"
+            name="description"
+            [(ngModel)]="todo.description"
+            [value]="todo.description">
+  </textarea>
+
+  <label><input type="checkbox"
+           [(ngModel)]="todo.isComplete"
+           [checked]="todo.isComplete"
+           name="isComplete"
+           id="isComplete"> Is Complete</label>
+</form>
+
+<ng-container *ngIf="isNewTodo">
+  <div class="button-row">
+    <button (click)="saveNewTodo()">save</button>
+  </div>
+</ng-container>

@@ -1,0 +1,17 @@
+<div class="wrapper">
+  <div class="new-todo">
+    <h2>New To-do</h2>
+    <app-todo-form [isNewTodo]="true"
+                   (newTodoSave)="saveTodo($event)"></app-todo-form>
+  </div>
+
+  <h2>To-do List</h2>
+  <ul class="todo-list">
+    <li class="list-item"
+        *ngFor="let todo of todos">
+      <app-todo [todo]="todo"
+                (deleteTodo)="deleteTodo($event)"
+                (updateTodo)="updateTodo($event)"></app-todo>
+    </li>
+  </ul>
+</div>

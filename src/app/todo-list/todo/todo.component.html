@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <ng-container *ngTemplateOutlet="isEditMode ? edit: readOnly"></ng-container>
+</div>
+
+<ng-template #edit>
+  <app-todo-form [todo]="todo"></app-todo-form>
+  <button (click)="saveClick()">save</button>
+  <button (click)="toggleEditMode()">cancel</button>
+</ng-template>
+
+<ng-template #readOnly>
+  <span class="name">{{todo.name}}</span>
+  <p>{{todo.description}}</p>
+  <button (click)="toggleEditMode()">edit</button>
+  <button (click)="deleteClick()">delete</button>
+</ng-template>

@@ -1,0 +1,13 @@
+:host-context(.list-item) {
+ .wrapper {
+    display: flex;
+
+    button {
+      display: flex;
+
+      &:first-of-type {
+        margin-left: auto;
+      }
+    }
+ }
+}
