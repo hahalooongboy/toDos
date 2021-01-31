@@ -1,16 +1,37 @@
-<div class="wrapper">
-  <ng-container *ngTemplateOutlet="isEditMode ? edit: readOnly"></ng-container>
-</div>
+<mat-card>
+  <ng-container *ngTemplateOutlet="isEditMode ? editTemplate: readOnlyTemplate"></ng-container>
+</mat-card>
 
-<ng-template #edit>
+<ng-template #editTemplate>
   <app-todo-form [todo]="todo"></app-todo-form>
-  <button (click)="saveClick()">save</button>
-  <button (click)="toggleEditMode()">cancel</button>
+  <button mat-icon-button
+          aria-label="Save"
+          (click)="saveClick()">
+    <mat-icon role="presentation">save</mat-icon>
+  </button>
+  <button mat-icon-button
+          aria-label="Cancel"
+          (click)="toggleEditMode()">
+    <mat-icon role="presentation">cancel</mat-icon>
+  </button>
 </ng-template>
 
-<ng-template #readOnly>
-  <span class="name">{{todo.name}}</span>
-  <p>{{todo.description}}</p>
-  <button (click)="toggleEditMode()">edit</button>
-  <button (click)="deleteClick()">delete</button>
+<ng-template #readOnlyTemplate>
+  <mat-card-title>{{todo.name}}</mat-card-title>
+  <mat-card-content>
+    <p>{{todo.description}}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-icon-button
+            aria-label="Edit"
+            (click)="toggleEditMode()">
+      <mat-icon role="presentation">edit</mat-icon>
+    </button>
+    <button mat-icon-button
+            aria-label="Delete"
+            (click)="deleteClick()">
+      <mat-icon role="presentation">delete</mat-icon>
+    </button>
+  </mat-card-actions>
 </ng-template>

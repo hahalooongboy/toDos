@@ -1,17 +1,25 @@
-<div class="wrapper">
-  <div class="new-todo">
-    <h2>New To-do</h2>
-    <app-todo-form [isNewTodo]="true"
-                   (newTodoSave)="saveTodo($event)"></app-todo-form>
-  </div>
+<div class="expand-wrapper">
+  <mat-expansion-panel>
 
-  <h2>To-do List</h2>
-  <ul class="todo-list">
-    <li class="list-item"
-        *ngFor="let todo of todos">
-      <app-todo [todo]="todo"
-                (deleteTodo)="deleteTodo($event)"
-                (updateTodo)="updateTodo($event)"></app-todo>
-    </li>
-  </ul>
+    <mat-expansion-panel-header>
+      <mat-panel-title>New To-Do</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <ng-template matExpansionPanelContent>
+      <app-todo-form [isNewTodo]="true"
+                     (newTodoSave)="saveTodo($event)">
+      </app-todo-form>
+    </ng-template>
+
+  </mat-expansion-panel>
+</div>
+
+<div class="wrapper">
+  <app-todo *ngFor="let todo of todos; first as isFirst"
+            [ngClass]="isFirst ? 'first' : ''"
+            [todo]="todo"
+            [listItem]="true"
+            (deleteTodo)="deleteTodo($event)"
+            (updateTodo)="updateTodo($event)">
+  </app-todo>
 </div>

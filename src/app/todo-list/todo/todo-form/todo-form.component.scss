@@ -1,0 +1,17 @@
+.name,
+.description,
+.isComplete {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+
+  ::ng-deep {
+    .mat-form-field-wrapper {
+      width: 100%;
+    }
+  }
+}
+
+.isComplete {
+  margin: 8px 0 16px;
+}

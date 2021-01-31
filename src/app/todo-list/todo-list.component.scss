@@ -1,32 +1,21 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
+mat-expansion-panel {
+  margin: 0 auto;
+  width: 50%;
 }
 
-ul {
-  padding: 0;
-  display: grid;
-  align-items: flex-start;
-  row-gap: 8px;
-  margin: 24px auto auto;
-  width: 50%;
-  height: auto;
-  max-height: 80%;
+.expand-wrapper {
+  box-sizing: border-box;
+  padding-top: 8px;
+}
 
+.wrapper {
+  max-height: 80%;
+  width: 50%;
+  margin: 16px auto 0;
   overflow-x: hidden;
   overflow-y: auto;
+}
 
-  @media screen and (max-width: 719px) {
-    width: 80%;
-    max-height: 90%;
-  }
-
-  li {
-    max-height: 80px;
-    height: 80px;
-    min-height: 80px;
-  }
-
+:host {
+  padding-top: 8px;
 }

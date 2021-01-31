@@ -10,6 +10,9 @@ import { IToDo } from 'src/app/models/todo';
 export class TodoComponent implements OnInit {
 
   @Input()
+  listItem: boolean = false;
+
+  @Input()
   todo!: IToDo;
 
   @Input()

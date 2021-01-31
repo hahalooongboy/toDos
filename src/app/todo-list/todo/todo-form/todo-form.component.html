@@ -1,24 +1,40 @@
-<form>
-  <input type="text"
-         id="name"
-         name="name"
-         [(ngModel)]="todo.name"
-         [value]="todo.name">
-  <textarea id="description"
-            name="description"
-            [(ngModel)]="todo.description"
-            [value]="todo.description">
-  </textarea>
+<form id="todoForm">
+  <mat-form-field class="name">
+    <mat-label>Name</mat-label>
+    <input matInput
+           id="name"
+           name="name"
+           [(ngModel)]="todo.name"
+           [value]="todo.name">
+  </mat-form-field>
 
-  <label><input type="checkbox"
-           [(ngModel)]="todo.isComplete"
-           [checked]="todo.isComplete"
-           name="isComplete"
-           id="isComplete"> Is Complete</label>
+  <mat-form-field class="description">
+    <mat-label>Description</mat-label>
+    <textarea matInput
+              id="description"
+              name="description"
+              [(ngModel)]="todo.description"
+              [value]="todo.description">
+  </textarea>
+  </mat-form-field>
+
+  <mat-checkbox [(ngModel)]="todo.isComplete"
+                [checked]="todo.isComplete"
+                name="isComplete"
+                id="isComplete"
+                class="isComplete">
+    Is Complete
+  </mat-checkbox>
 </form>
 
 <ng-container *ngIf="isNewTodo">
-  <div class="button-row">
-    <button (click)="saveNewTodo()">save</button>
-  </div>
+  <mat-action-row>
+    <div class="button-row">
+      <button mat-icon-button
+              aria-label="Save"
+              (click)="saveNewTodo()">
+        <mat-icon role="presentation">save</mat-icon>
+      </button>
+    </div>
+  </mat-action-row>
 </ng-container>

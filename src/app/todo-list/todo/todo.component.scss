@@ -1,13 +1,11 @@
-:host-context(.list-item) {
- .wrapper {
-    display: flex;
+mat-card {
+  margin: 8px 0 0;
+}
 
-    button {
-      display: flex;
-
-      &:first-of-type {
-        margin-left: auto;
-      }
+:host {
+  &.first {
+    mat-card {
+      margin-top: 0;
     }
- }
+  }
 }
