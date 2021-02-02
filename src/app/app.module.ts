@@ -18,6 +18,7 @@ import { TodoComponent } from './todo-list/todo/todo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoFormComponent } from './todo-list/todo/todo-form/todo-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchComponent } from './todo-list/search/search.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     TodoListComponent,
     TodoComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

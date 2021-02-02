@@ -13,8 +13,10 @@
 
   </mat-expansion-panel>
 </div>
-
 <div class="wrapper">
+  <app-search (searchTodo)="searchTodoList($event)"></app-search>
+</div>
+<div class="wrapper list">
   <app-todo *ngFor="let todo of todos; first as isFirst"
             [ngClass]="isFirst ? 'first' : ''"
             [todo]="todo"

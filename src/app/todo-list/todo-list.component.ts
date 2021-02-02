@@ -22,12 +22,23 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Filter
+  searchTodoList(searchTerm: string): any {
+    if (searchTerm != '') {
+      this.todos = this.todos.filter(
+        todo => { return todo.name.toLowerCase().includes(searchTerm.toLowerCase()) }
+      );
+    } else {
+      this.getToDoList();
+    }
+  }
+
+  // API
   getToDoList(): any {
     this.api.getTodos()
       .subscribe(
         (response: any) => {
           this.todos = response;
-          console.log(this.todos);
         },
         (error: any) => {
           console.error(`Error:: ${ error }`);
@@ -35,14 +46,9 @@ export class TodoListComponent implements OnInit {
       );
   }
 
-  test(key: any): void {
-    console.log(key);
-  }
-
   deleteTodo(todo: IToDo): void {
     this.api.deleteTodo(todo.id).subscribe(
       (response: any) => {
-        console.log(`${ todo.id } deleted.`);
         this.getToDoList();
       },
       (error: any) => {
@@ -54,7 +60,6 @@ export class TodoListComponent implements OnInit {
   updateTodo(todo: IToDo): void {
     this.api.updateTodo(todo).subscribe(
       (response: any) => {
-        console.log(`${ todo.id } updated.`);
         this.getToDoList();
       },
       (error: any) => {
@@ -66,7 +71,6 @@ export class TodoListComponent implements OnInit {
   saveTodo(todo: IToDo): void {
     this.api.saveTodo(todo).subscribe(
       (response: any) => {
-        console.log(`${ todo.id } saved.`);
         this.getToDoList();
       },
       (error: any) => {
