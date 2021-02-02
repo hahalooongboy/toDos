@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IToDo } from 'src/app/models/todo';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-form',
@@ -8,6 +9,7 @@ import { IToDo } from 'src/app/models/todo';
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent implements OnInit {
+
 
   @Input()
   isNewTodo: boolean = false;

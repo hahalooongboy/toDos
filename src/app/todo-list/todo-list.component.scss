@@ -1,6 +1,29 @@
+%lg-sizing {
+  @media screen and (min-width: 1201px) {
+    width: 50%;
+  }
+}
+
+%med-sizing {
+  @media screen and (max-width: 1200px) {
+    width: 70%;
+  }
+}
+
+%sm-sizing {
+  @media screen and (max-width: 719px) {
+    width: 95%;
+  }
+}
+
 mat-expansion-panel {
   margin: 0 auto;
-  width: 50%;
+
+  @extend %lg-sizing;
+
+  @extend %med-sizing;
+
+  @extend %sm-sizing;
 }
 
 .expand-wrapper {
@@ -10,10 +33,15 @@ mat-expansion-panel {
 
 .wrapper {
   max-height: 80%;
-  width: 50%;
   margin: 16px auto 0;
   overflow-x: hidden;
   overflow-y: auto;
+
+  @extend %lg-sizing;
+
+  @extend %med-sizing;
+
+  @extend %sm-sizing;
 }
 
 :host {

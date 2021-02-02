@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoComponent } from './todo-list/todo/todo.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoFormComponent } from './todo-list/todo/todo-form/todo-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -40,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

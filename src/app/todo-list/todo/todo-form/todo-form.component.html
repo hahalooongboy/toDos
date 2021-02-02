@@ -1,9 +1,13 @@
-<form id="todoForm">
+<form #todoForm="ngForm"
+      id="todoForm"
+      (ngSubmit)="saveNewTodo()">
   <mat-form-field class="name">
     <mat-label>Name</mat-label>
     <input matInput
            id="name"
            name="name"
+           required
+           minlength="1"
            [(ngModel)]="todo.name"
            [value]="todo.name">
   </mat-form-field>
@@ -25,16 +29,17 @@
                 class="isComplete">
     Is Complete
   </mat-checkbox>
-</form>
 
-<ng-container *ngIf="isNewTodo">
-  <mat-action-row>
-    <div class="button-row">
-      <button mat-icon-button
-              aria-label="Save"
-              (click)="saveNewTodo()">
-        <mat-icon role="presentation">save</mat-icon>
-      </button>
-    </div>
-  </mat-action-row>
-</ng-container>
+  <ng-container *ngIf="isNewTodo">
+    <mat-action-row>
+      <div class="button-row">
+        <button mat-icon-button
+                aria-label="Save"
+                type="submit"
+                [disabled]="!todoForm.valid">
+          <mat-icon role="presentation">save</mat-icon>
+        </button>
+      </div>
+    </mat-action-row>
+  </ng-container>
+</form>
