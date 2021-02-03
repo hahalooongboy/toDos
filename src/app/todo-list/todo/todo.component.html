@@ -3,32 +3,34 @@
 </mat-card>
 
 <ng-template #editTemplate>
-  <app-todo-form [todo]="todo"></app-todo-form>
-  <button mat-icon-button
-          aria-label="Save"
-          (click)="saveClick()">
-    <mat-icon role="presentation">save</mat-icon>
-  </button>
-  <button mat-icon-button
-          aria-label="Cancel"
-          (click)="toggleEditMode()">
-    <mat-icon role="presentation">cancel</mat-icon>
-  </button>
+  <app-todo-form [todo]="todo"
+                 (updateTodoClick)="saveClick($event)"
+                 (cancelEditClick)="toggleEditMode()"></app-todo-form>
 </ng-template>
 
 <ng-template #readOnlyTemplate>
-  <mat-card-title>{{todo.name}}</mat-card-title>
+  <mat-card-title>{{ todo.name }}</mat-card-title>
   <mat-card-content>
-    <p>{{todo.description}}</p>
+    <p>{{ todo.description }}</p>
+
+    <span *ngIf="todo.dueDate"
+          matTooltip="{{todo.dueDate | date}}"
+          matTooltipPosition="right">
+      {{ daysUntilDue }}
+    </span>
   </mat-card-content>
 
   <mat-card-actions>
     <button mat-icon-button
+            matTooltip="Edit"
+            matTooltipPosition="below"
             aria-label="Edit"
             (click)="toggleEditMode()">
       <mat-icon role="presentation">edit</mat-icon>
     </button>
     <button mat-icon-button
+            matTooltip="Delete"
+            matTooltipPosition="below"
             aria-label="Delete"
             (click)="deleteClick()">
       <mat-icon role="presentation">delete</mat-icon>

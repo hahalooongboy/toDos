@@ -1,6 +1,6 @@
-<form #todoForm="ngForm"
+<form [formGroup]="todoForm"
       id="todoForm"
-      (ngSubmit)="saveNewTodo()">
+      (ngSubmit)="saveNewTodo(); todoForm.reset()">
   <mat-form-field class="name">
     <mat-label>Name</mat-label>
     <input matInput
@@ -8,7 +8,7 @@
            name="name"
            required
            minlength="1"
-           [(ngModel)]="todo.name"
+           formControlName="name"
            [value]="todo.name">
   </mat-form-field>
 
@@ -17,12 +17,26 @@
     <textarea matInput
               id="description"
               name="description"
-              [(ngModel)]="todo.description"
+              formControlName="description"
               [value]="todo.description">
   </textarea>
   </mat-form-field>
 
-  <mat-checkbox [(ngModel)]="todo.isComplete"
+  <mat-form-field class="dueDate">
+    <mat-label>Due Date</mat-label>
+    <input matInput
+           [matDatepicker]="picker"
+           id="date"
+           name="date"
+           minlength="1"
+           formControlName="dueDate"
+           [value]="todo.dueDate">
+    <mat-datepicker-toggle matSuffix
+                           [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-checkbox formControlName="isComplete"
                 [checked]="todo.isComplete"
                 name="isComplete"
                 id="isComplete"
@@ -32,14 +46,41 @@
 
   <ng-container *ngIf="isNewTodo">
     <mat-action-row>
+      <div *ngIf="todoForm.touched && !todoForm.valid"
+           class="errors">
+        <ul>
+          <li *ngIf="name && name.invalid">Name is required.</li>
+        </ul>
+      </div>
       <div class="button-row">
         <button mat-icon-button
                 aria-label="Save"
-                type="submit"
-                [disabled]="!todoForm.valid">
+                [disabled]="!todoForm.valid"
+                type="submit">
           <mat-icon role="presentation">save</mat-icon>
         </button>
       </div>
     </mat-action-row>
+  </ng-container>
+
+  <ng-container *ngIf="!isNewTodo">
+    <mat-card-actions>
+      <button type="submit"
+              mat-icon-button
+              matTooltip="Save"
+              matTooltipPosition="below"
+              aria-label="Save"
+              (click)="updateTodo()">
+        <mat-icon role="presentation">save</mat-icon>
+      </button>
+      <button type="button"
+              mat-icon-button
+              matTooltip="Cancel"
+              matTooltipPosition="below"
+              aria-label="Cancel"
+              (click)="toggleEditMode()">
+        <mat-icon role="presentation">cancel</mat-icon>
+      </button>
+    </mat-card-actions>
   </ng-container>
 </form>
