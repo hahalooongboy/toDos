@@ -69,8 +69,7 @@ export class TodoFormComponent implements OnInit {
   saveNewTodo(event: any): void {
     this.todo = { ...this.todoForm.value };
     this.newTodoSave.emit(this.todo);
-    event.currentTarget.reset(); // reset error state?
-    console.log(event.currentTarget);
+    event.currentTarget.reset();
     this.todoForm.reset();
     this.initTodo();
   }

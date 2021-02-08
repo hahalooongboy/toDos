@@ -1,7 +1,13 @@
 # Basic To-Do App
 
+## Install First
+.NET 5.0 or higher and NodeJS
+
 ## Data Setup
-Run `npm run generate` to create data, then run `npm run server` to start fake back end.
+From the `/api` directory, run `dotnet ef database upgrade` to set up the database for local use.
+
+## .NET Startup
+From the `/api` directory, run `dotnet build`, then `dotnet run` in a terminal window. Leave this running in the background.
 
 ## Angular Startup
-Run `ng serve` to start front end code. Optionally, include `--watch` to update automatically with changes.
+In a second terminal window, run `ng serve` to start front end code.
