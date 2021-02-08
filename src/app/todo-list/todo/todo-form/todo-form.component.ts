@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IToDo } from 'src/app/models/todo';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-form',
@@ -9,6 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent implements OnInit {
+
+  public uniqueId: string;
 
   @Input()
   isNewTodo: boolean = false;
@@ -28,44 +30,49 @@ export class TodoFormComponent implements OnInit {
   todoForm!: FormGroup;
 
   constructor () {
-
+    this.uniqueId = uuid();
   }
 
   ngOnInit(): void {
-    this.initNewTodo();
 
-    this.todoForm = new FormGroup({
-      name: new FormControl(this.todo.name, [
-        Validators.required,
-        Validators.minLength(1)
-      ]),
-      description: new FormControl(this.todo.description),
-      dueDate: new FormControl(this.todo.dueDate.toString()),
-      isComplete: new FormControl(this.todo.isComplete)
-    });
+    this.initTodo();
   }
 
   get name() { return this.todoForm.get('name')! }
   get dueDate() { return this.todoForm.get('dueDate')! }
 
-  initNewTodo(): void {
+  initTodo(): void {
     if (this.isNewTodo) {
-      const newTodo: IToDo = {
-        id: uuid(),
-        name: '',
-        description: '',
-        dueDate: '',
-        isComplete: false
-      }
-
-      this.todo = newTodo;
+      this.todoForm = new FormGroup({
+        name: new FormControl('', [
+          Validators.required,
+          Validators.minLength(1)
+        ]),
+        description: new FormControl(''),
+        dueDate: new FormControl(''),
+        isComplete: new FormControl(false)
+      });
+    } else {
+      this.todoForm = new FormGroup({
+        name: new FormControl(this.todo.name, [
+          Validators.required,
+          Validators.minLength(1)
+        ]),
+        description: new FormControl(this.todo.description),
+        dueDate: new FormControl(this.todo.dueDate),
+        isComplete: new FormControl(this.todo.isComplete)
+      });
     }
   }
 
   // New To-Do
-  saveNewTodo(): void {
-    this.todo = { id: uuid(), ...this.todoForm.value };
+  saveNewTodo(event: any): void {
+    this.todo = { ...this.todoForm.value };
     this.newTodoSave.emit(this.todo);
+    event.currentTarget.reset(); // reset error state?
+    console.log(event.currentTarget);
+    this.todoForm.reset();
+    this.initTodo();
   }
 
   // Edit To-Do

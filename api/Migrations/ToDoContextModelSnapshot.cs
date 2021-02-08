@@ -25,7 +25,7 @@ namespace api.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DueDate")
+                    b.Property<string>("DueDate")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsComplete")

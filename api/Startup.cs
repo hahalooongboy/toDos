@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,19 @@ namespace api
 
 
       services.AddDbContext<ToDoContext>(options =>
-            {
-              options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
-            });
+      {
+        options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
+      });
+      services.AddCors(options =>
+        {
+          options.AddDefaultPolicy(
+              builder =>
+              {
+                builder.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+              });
+        });
       services.AddControllers();
 
     }
@@ -46,10 +57,13 @@ namespace api
       {
         app.UseDeveloperExceptionPage();
       }
+      app.UseRouting();
+
+      app.UseCors();
 
       app.UseHttpsRedirection();
+      app.UseStaticFiles();
 
-      app.UseRouting();
 
       app.UseAuthorization();
 

@@ -9,7 +9,7 @@ namespace api.Models
 
     public string Description { get; set; }
 
-    public DateTime DueDate { get; set; }
+    public string DueDate { get; set; }
 
     public bool IsComplete { get; set; }
   }

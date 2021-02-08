@@ -78,7 +78,6 @@ namespace api.Controllers
       _context.ToDos.Add(toDo);
       await _context.SaveChangesAsync();
 
-      // return CreatedAtAction("GetToDo", new { id = toDo.Id }, toDo);
       return CreatedAtAction(nameof(GetToDo), new { id = toDo.Id }, toDo);
     }
 

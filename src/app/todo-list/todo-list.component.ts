@@ -69,7 +69,9 @@ export class TodoListComponent implements OnInit {
   }
 
   saveTodo(todo: IToDo): void {
-    this.api.saveTodo(todo).subscribe(
+    let jsonTodo = JSON.stringify(todo);
+
+    this.api.saveTodo(jsonTodo).subscribe(
       (response: any) => {
         this.getToDoList();
       },
