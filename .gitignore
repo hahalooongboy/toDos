@@ -182,3 +182,5 @@ $RECYCLE.BIN/
 _NCrunch*
 
 api/obj/
+
+api/todoapp.db

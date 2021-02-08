@@ -1,10 +1,10 @@
 <form [formGroup]="todoForm"
-      id="todoForm"
+      [id]="'todoForm_'+this.uniqueId"
       (ngSubmit)="saveNewTodo($event);">
   <mat-form-field class="name">
     <mat-label>Name</mat-label>
     <input matInput
-           id="name"
+           [id]="'name_'+this.uniqueId"
            name="name"
            required
            minlength="1"
@@ -14,7 +14,7 @@
   <mat-form-field class="description">
     <mat-label>Description</mat-label>
     <textarea matInput
-              id="description"
+              [id]="'description_'+this.uniqueId"
               name="description"
               formControlName="description">
   </textarea>
@@ -24,7 +24,7 @@
     <mat-label>Due Date</mat-label>
     <input matInput
            [matDatepicker]="picker"
-           id="date"
+           [id]="'date_'+this.uniqueId"
            name="date"
            minlength="1"
            formControlName="dueDate">
